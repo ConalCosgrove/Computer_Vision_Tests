@@ -20,6 +20,9 @@ while True:
 
     im2, contours, hierarchy = cv2.findContours(thresholded_image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     cv2.drawContours(img, contours, -1, (0,255,0), 3)
+    for c in contours:
+    	x,y,w,h = cv2.boundingRect(c)
+    	img = cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),2)
     cv2.imshow("Tracker",img)
     cv2.imshow("Thresh",thresholded_image)
     if cv2.waitKey(1) & 0xFF == ord('q'):
