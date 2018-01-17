@@ -6,8 +6,8 @@ cap.set(3, 1280) # set frame width
 cap.set(4, 720) # set frame height
 cv2.namedWindow('Tracker',cv2.WINDOW_NORMAL)
 cv2.namedWindow('Thresh',cv2.WINDOW_NORMAL)
-cv2.resizeWindow('Tracker',1440,720)
-cv2.resizeWindow('Thresh',1440,720)
+cv2.resizeWindow('Tracker',800,500)
+cv2.resizeWindow('Thresh',800,500)
 while True:
     img = cap.read()[1]
     CARD_MIN = np.array([64,90,45],np.uint8)
@@ -22,7 +22,8 @@ while True:
     cv2.drawContours(img, contours, -1, (0,255,0), 3)
     for c in contours:
     	x,y,w,h = cv2.boundingRect(c)
-    	img = cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),2)
+    	img = cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
+    	img = cv2.putText(img,"CARD",(x,y),cv2.FONT_HERSHEY_SIMPLEX,3,(0,0,255))
     cv2.imshow("Tracker",img)
     cv2.imshow("Thresh",thresholded_image)
     if cv2.waitKey(1) & 0xFF == ord('q'):
